@@ -27,3 +27,14 @@ begin
 rescue LoadError
   raise LoadError
 end
+
+
+require 'rom'
+require 'rom/sql/rake_task'
+
+namespace :db do
+  task :setup do
+    rom = ROM.container(:sql, 'postgres://localhost/hawkr_db')
+    rom.gateways[:default]
+  end
+end
