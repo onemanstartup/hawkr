@@ -4,38 +4,28 @@
 # "vwap":57.36350968,"max_bid":57.75998000,"min_ask":57.05001000,
 # "best_bid":57.05001000,"best_ask":57.69929000}]
 
+require_relative './base_http'
+
 module Markets
-  class Livecoin
-    def initialize(repo:)
-      @repo = repo
-      @ticker_url = '/exchange/ticker'
-      @client = Faraday.new(url: 'https://api.livecoin.net')
+  class Livecoin < BaseHttp
+    def api_base
+      'https://api.livecoin.net'
     end
 
-    def start
-      Thread.new do
-        loop do
-          begin
-            parse
-          rescue => ex
-            puts ex
-          end
-          puts 'waiting'
-          sleep 59
-        end
-      end.join
+    def api_url
+      '/exchange/ticker'
     end
 
     def parse
-      response = @client.get @ticker_url
+      response = @client.get api_url
       list = JSON.parse(response.body)
       list.each do |coin|
-        obj = LivecoinTickerRepresenter.new(OpenStruct.new).from_json(coin.to_json)
+        obj = representer.new(OpenStruct.new).from_json(coin.to_json)
         @repo.create(obj.to_h)
       end
     end
 
-    class LivecoinTickerRepresenter < Representable::Decorator
+    class Representer < Representable::Decorator
       include Representable::JSON
 
       property :market,     default: 'livecoin'

@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     hawkr (0.1.0)
-      dry-struct
+      dry-types
       faraday
       multi_json
       pg

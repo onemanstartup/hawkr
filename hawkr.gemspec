@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rom', '~> 4.0.0.rc'
   spec.add_dependency 'rom-sql', '~> 2.0.0.rc'
   spec.add_dependency 'pg'
-  spec.add_dependency 'dry-struct'
+  spec.add_dependency 'dry-types'
   spec.add_dependency 'representable'
   spec.add_dependency 'multi_json'
   spec.add_dependency 'faraday'
