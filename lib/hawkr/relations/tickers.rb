@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tickers < ROM::Relation[:sql]
   schema(:tickers) do
     attribute :market,     Types::Coercible::String

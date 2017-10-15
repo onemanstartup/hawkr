@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Markets
   class BaseHttp
     def initialize(repo:)
@@ -13,28 +15,39 @@ module Markets
       '/'
     end
 
+    def full_api_url
+      api_base + api_url
+    end
+
+    def fetch
+      @client.get api_url
+    end
+
     def parse(msg)
       return unless valid_message?(msg)
-      obj = representer.new(OpenStruct.new).from_json(msg)
+      obj = represented(msg)
       @repo.create(obj.to_h)
+    end
+
+    def represented(json)
+      representer.new(OpenStruct.new).from_json(json)
     end
 
     def representer
       Object.const_get(self.class.to_s + '::Representer')
     end
 
+    # rubocop:disable all
     def start
-      Thread.new do
-        loop do
-          begin
-            parse
-          rescue => ex
-            puts ex
-          end
-          puts 'waiting'
-          sleep 59
+      loop do
+        begin
+          parse
+        rescue => ex
+          puts ex
         end
-      end.join
+        puts 'waiting'
+        sleep 59
+      end
     end
   end
 end

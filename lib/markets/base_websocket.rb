@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Markets
   class BaseWebsocket
     def initialize(repo:)
@@ -28,6 +30,7 @@ module Markets
       Object.const_get(self.class.to_s + '::Representer')
     end
 
+    # rubocop:disable all
     def start
       Thread.new do
         loop do

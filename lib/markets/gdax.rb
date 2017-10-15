@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './base_websocket'
 
 module Markets
@@ -26,9 +28,9 @@ module Markets
 
       property :market,     default: 'gdax'
       property :currency,   as: :product_id,
-                            parse_filter: ->(fragment, _options) { fragment.gsub(%r{(.+)-(.+)}, '\\1') }
+                            parse_filter: ->(fragment, _options) { fragment.gsub(/(.+)-(.+)/, '\\1') }
       property :ticker,     as: :product_id,
-                            parse_filter: ->(fragment, _options) { fragment.gsub(%r{(.+)-(.+)}, '\\2') }
+                            parse_filter: ->(fragment, _options) { fragment.gsub(/(.+)-(.+)/, '\\2') }
       property :price
       property :bid,        as: :best_bid
       property :ask,        as: :best_ask

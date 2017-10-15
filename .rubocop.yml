@@ -1,0 +1,18 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.4
+  Exclude:
+    - '.gem/**/*'
+    - 'hawkr.gemspec'
+
+Metrics/LineLength:
+  Max: 160
+
+Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+AsciiComments:
+  Description: 'Use only ascii symbols in comments.'
+  Enabled: false

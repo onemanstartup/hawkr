@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rom-sql'
 require 'rom-repository'
 require 'pg'
@@ -12,5 +14,9 @@ class RomBoot
       conf.register_relation(Tickers)
     end
     @tickers_repo = Hawkr::TickersRepo.new(rom)
+  end
+
+  def self.test
+    new(rom_type: :sql, address: 'postgres://localhost/hawkr_db_test')
   end
 end

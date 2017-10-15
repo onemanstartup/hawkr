@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'byebug'
 require 'dry-types'
 require 'faraday'
@@ -23,14 +25,15 @@ end
 
 repo = RomBoot.new.tickers_repo
 
-Raven.capture do
-  threads = []
-  [Markets::Livecoin, Markets::Gdax].each do |market|
-    threads << Thread.new do
-      market.new(repo: repo).start
+if ENV['RUN']
+  Raven.capture do
+    threads = []
+    [Markets::Livecoin, Markets::Gdax].each do |market|
+      threads << Thread.new do
+        market.new(repo: repo).start
+      end
     end
-  end
 
-  threads.each(&:join)
+    threads.each(&:join)
+  end
 end
-puts 'done'

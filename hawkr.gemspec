@@ -44,4 +44,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'mutant-rspec', '~> 0.8.14'
   spec.add_development_dependency 'rubocop', '~> 0.50.0'
   spec.add_development_dependency 'byebug'
+  spec.add_development_dependency 'vcr'
+  spec.add_development_dependency 'webmock'
+  spec.add_development_dependency 'rubocop-rspec'
 end

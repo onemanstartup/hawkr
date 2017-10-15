@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://api.livecoin.net/exchange/ticker
 # [{"cur":"USD","symbol":"USD/RUR","last":57.05001000,
 # "high":57.75998000,"low":57.05001000,"volume":1308.71178133,
@@ -17,10 +19,9 @@ module Markets
     end
 
     def parse
-      response = @client.get api_url
-      list = JSON.parse(response.body)
+      list = JSON.parse(fetch.body)
       list.each do |coin|
-        obj = representer.new(OpenStruct.new).from_json(coin.to_json)
+        obj = represented(coin.to_json)
         @repo.create(obj.to_h)
       end
     end
