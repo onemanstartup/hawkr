@@ -1,0 +1,49 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.bithumb.com/public/ticker/ALL
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 15 Oct 2017 04:05:45 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d678bc4b137a353184763df989a760ce51508040344; expires=Mon, 15-Oct-18
+        04:05:44 GMT; path=/; domain=.bithumb.com; HttpOnly
+      - ci_session=a%3A5%3A%7Bs%3A10%3A%22session_id%22%3Bs%3A32%3A%22ac3b48199180036eed938bc5d31bf9e7%22%3Bs%3A10%3A%22ip_address%22%3Bs%3A12%3A%225.18.236.162%22%3Bs%3A10%3A%22user_agent%22%3Bs%3A15%3A%22Faraday+v0.13.1%22%3Bs%3A13%3A%22last_activity%22%3Bi%3A1508040344%3Bs%3A9%3A%22user_data%22%3Bs%3A0%3A%22%22%3B%7D821eb92364146e4398482e9fb5d0af92ef20e40b;
+        expires=Sun, 15-Oct-2017 06:05:44 GMT; Max-Age=7200; path=/
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Access-Control-Allow-Headers:
+      - "*"
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 3adfe6d669f08dad-DME
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":"0000","data":{"BTC":{"opening_price":"6451000","closing_price":"6575000","min_price":"6375000","max_price":"6686000","average_price":"6507032.0811","units_traded":"22425.24051479","volume_1day":"22425.24051479","volume_7day":"188515.81215424","buy_price":"6573000","sell_price":"6575000"},"ETH":{"opening_price":"385700","closing_price":"382700","min_price":"377950","max_price":"395950","average_price":"387319.1729","units_traded":"285936.7992957697458484","volume_1day":"285936.7992957697458484","volume_7day":"1628917.915153697442507900","buy_price":"382700","sell_price":"383000"},"DASH":{"opening_price":"351350","closing_price":"353150","min_price":"349050","max_price":"360000","average_price":"354621.5491","units_traded":"24799.7785448","volume_1day":"24799.7785448","volume_7day":"198716.472004940000000000","buy_price":"352950","sell_price":"353150"},"LTC":{"opening_price":"67320","closing_price":"77100","min_price":"66730","max_price":"78400","average_price":"72776.6467","units_traded":"1505961.12107593","volume_1day":"1505961.12107593","volume_7day":"5389661.460452590000000000","buy_price":"77090","sell_price":"77100"},"ETC":{"opening_price":"13675","closing_price":"14120","min_price":"13655","max_price":"14295","average_price":"13915.9889","units_traded":"1322722.789565323832432","volume_1day":"1322722.789565323832432","volume_7day":"7869871.872334997237983000","buy_price":"14120","sell_price":"14125"},"XRP":{"opening_price":"297","closing_price":"293","min_price":"290","max_price":"302","average_price":"295.0061","units_traded":"317695143.329878","volume_1day":"317695143.329878","volume_7day":"4898866797.896260000000000000","buy_price":"293","sell_price":"294"},"BCH":{"opening_price":"367900","closing_price":"363600","min_price":"359200","max_price":"369300","average_price":"363381.1244","units_traded":"85806.97752526","volume_1day":"85806.97752526","volume_7day":"1429030.679176970000000000","buy_price":"363600","sell_price":"363700"},"XMR":{"opening_price":"106830","closing_price":"110910","min_price":"105810","max_price":"117820","average_price":"110933.2548","units_traded":"96613.0404455","volume_1day":"96613.0404455","volume_7day":"390956.660982610000000000","buy_price":"110500","sell_price":"110910"},"ZEC":{"opening_price":"271600","closing_price":"270400","min_price":"269000","max_price":"273300","average_price":"271391.5052","units_traded":"8623.68188586","volume_1day":"8623.68188586","volume_7day":"148426.885708750000000000","buy_price":"270350","sell_price":"270400"},"date":"1508040345147"}}'
+    http_version: 
+  recorded_at: Sun, 15 Oct 2017 04:05:45 GMT
+recorded_with: VCR 3.0.3

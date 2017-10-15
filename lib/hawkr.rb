@@ -10,6 +10,7 @@ require 'hawkr/version'
 require 'rom_boot'
 require_relative 'markets/livecoin'
 require_relative 'markets/coinone'
+require_relative 'markets/bithumb'
 require_relative 'markets/gdax'
 require 'raven/base'
 
