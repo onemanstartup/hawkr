@@ -18,11 +18,20 @@ module Markets
       true
     end
 
+    # Should return ruby object that have method to_json
+    # Possible objects Array and Hash
     def send_on_open; end
 
     def parse(msg)
       return unless valid_message?(msg)
-      obj = representer.new(OpenStruct.new).from_json(msg)
+      save_item(represented(msg))
+    end
+
+    def represented(json)
+      representer.new(OpenStruct.new).from_json(json)
+    end
+
+    def save_item(obj)
       @repo.create(obj.to_h)
     end
 
@@ -41,7 +50,15 @@ module Markets
 
             ws.onopen do
               puts 'Connected'
-              ws.send(send_on_open) if send_on_open
+              if send_on_open
+                if send_on_open.is_a?(Array)
+                  send_on_open.each do |message|
+                    ws.send(message.to_json)
+                  end
+                else
+                  ws.send(send_on_open.to_json)
+                end
+              end
             end
 
             ws.onmessage do |msg, _type|

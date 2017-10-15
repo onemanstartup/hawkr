@@ -12,11 +12,8 @@ module Markets
       {
         type: 'subscribe',
         product_ids: ['ETH-USD', 'BTC-USD', 'LTC-USD'],
-        channels: %w[
-          heartbeat
-          ticker
-        ]
-      }.to_json
+        channels: %w[heartbeat ticker]
+      }
     end
 
     def valid_message?(msg)

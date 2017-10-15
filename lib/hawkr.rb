@@ -15,8 +15,66 @@ require_relative 'markets/bithumb'
 require_relative 'markets/quoine'
 require_relative 'markets/bter'
 require_relative 'markets/kraken'
+# chinese bullshit require_relative 'markets/btc38'
 # websocket based
 require_relative 'markets/gdax'
+require_relative 'markets/bitfinex'
+# require_relative 'markets/bitstamp'
+# require_relative 'markets/binance'
+# TODO: bitflyer is blocked for me
+# require_relative 'markets/bitflyer'
+# TODO: korbit is blocked for me
+# require_relative 'markets/korbit'
+# require_relative 'markets/gemini'
+# require_relative 'markets/okcoin'
+
+# This is localbitcoins
+# coincheckjpy
+# bitfinexusd
+# bitflyerjpy
+# bitstampusd
+# zaifjpy
+# geminiusd
+# korbit
+# okcoincny
+# lakeusd
+# wexusd
+# btcboxjpy
+# coinsbankeur
+# coinsbankrub
+# hitbtcusd
+# cexusd
+# cexiousd
+# bitstampeur
+# coinsbankusd
+# coinsbankgbp
+# oitbitusd
+# getbtcusd
+# okcoinusd
+# btcoididr
+# coinfloorgbp
+# Bitstamp
+# Bitcoin Charts - https://bitcoincharts.com/markets/list/
+# Bitpay
+# BitcoinAverage
+#
+# This is bitcoinaverage.com
+# Bitfinex
+# Bitstamp
+# Gemini
+# Bittrex
+# Poloniex
+# CEX.IO
+# Hitbtc
+# Exmoney
+# QuadrigaCX
+# Bitex.la
+# Rock Trading
+# Bitsquare
+# Independent Reserve
+
+
+
 require 'raven/base'
 
 Raven.configure do |config|
@@ -35,7 +93,7 @@ repo = RomBoot.new.tickers_repo
 if ENV['RUN']
   Raven.capture do
     threads = []
-    [Markets::Livecoin, Markets::Gdax].each do |market|
+    [Markets::Bitfinex].each do |market|
       threads << Thread.new do
         market.new(repo: repo).start
       end
