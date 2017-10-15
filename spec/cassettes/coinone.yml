@@ -1,0 +1,53 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.coinone.co.kr/ticker?currency=all
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 15 Oct 2017 03:21:59 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d7ebe7fcd790555aa8259f4bad5bce9a91508037718; expires=Mon, 15-Oct-18
+        03:21:58 GMT; path=/; domain=.coinone.co.kr; HttpOnly
+      Allow:
+      - GET, HEAD, OPTIONS
+      Cache-Control:
+      - max-age=0.5
+      Expires:
+      - Sun, 15 Oct 2017 03:21:59 GMT
+      Last-Modified:
+      - Sun, 15 Oct 2017 03:21:59 GMT
+      Vary:
+      - Accept
+      X-Frame-Options:
+      - SAMEORIGIN
+      Server:
+      - cloudflare-nginx
+      Cf-Ray:
+      - 3adfa6bf5f154eea-DME
+    body:
+      encoding: ASCII-8BIT
+      string: '{"bch":{"volume":"12441.9608","last":"362000","yesterday_last":"360500","yesterday_low":"357300","high":"373200","currency":"bch","low":"359000","yesterday_first":"359500","yesterday_volume":"18086.0746","yesterday_high":"373300","first":"365000"},"qtum":{"volume":"420646.8004","last":"12440","yesterday_last":"12590","yesterday_low":"12390","high":"12920","currency":"qtum","low":"12330","yesterday_first":"12410","yesterday_volume":"670188.4633","yesterday_high":"13000","first":"12910"},"errorCode":"0","etc":{"volume":"419158.6493","last":"13880","yesterday_last":"13860","yesterday_low":"13600","high":"14160","currency":"etc","low":"13650","yesterday_first":"13700","yesterday_volume":"494216.6694","yesterday_high":"14170","first":"13690"},"result":"success","btc":{"volume":"5421.5594","last":"6599500","yesterday_last":"6532000","yesterday_low":"6343000","high":"6678000","currency":"btc","low":"6376000","yesterday_first":"6559000","yesterday_volume":"6154.6372","yesterday_high":"6580000","first":"6424500"},"timestamp":"1508037719","eth":{"volume":"113798.5013","last":"382000","yesterday_last":"387550","yesterday_low":"376100","high":"394900","currency":"eth","low":"377300","yesterday_first":"388500","yesterday_volume":"105554.8656","yesterday_high":"394900","first":"382350"},"xrp":{"volume":"54650267.8987","last":"292","yesterday_last":"295","yesterday_low":"289","high":"302","currency":"xrp","low":"289","yesterday_first":"291","yesterday_volume":"89615128.9596","yesterday_high":"303","first":"297"}}'
+    http_version: 
+  recorded_at: Sun, 15 Oct 2017 03:21:59 GMT
+recorded_with: VCR 3.0.3

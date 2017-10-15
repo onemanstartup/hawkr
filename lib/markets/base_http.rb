@@ -40,7 +40,11 @@ module Markets
     end
 
     def fetch_json
-      fetch.body
+      prepare_json(parse_json).to_json
+    end
+
+    def prepare_json(json)
+      json
     end
 
     def represented_collection(json)
