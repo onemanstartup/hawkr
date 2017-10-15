@@ -9,6 +9,7 @@ PATH
       representable
       rom (~> 4.0.0.rc)
       rom-sql (~> 2.0.0.rc)
+      sentry-raven
       websocket-eventmachine-client
 
 GEM
@@ -161,6 +162,8 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.9.0)
+    sentry-raven (2.7.1)
+      faraday (>= 0.7.6, < 1.0)
     sequel (5.1.0)
     thread_safe (0.3.6)
     transproc (1.0.2)
