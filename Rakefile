@@ -16,7 +16,7 @@ task :fuzz do
   end
 end
 
-task default: %i[spec fuzz]
+task default: %i[spec]
 
 begin
   require 'rubocop/rake_task'

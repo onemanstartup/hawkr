@@ -19,18 +19,40 @@ module Markets
       api_base + api_url
     end
 
-    def fetch
-      @client.get api_url
+    def parse
+      raise NotImplementedError
     end
 
-    def parse(msg)
-      return unless valid_message?(msg)
-      obj = represented(msg)
-      @repo.create(obj.to_h)
+    def parse_json
+      JSON.parse(fetch.body)
+    rescue JSON::JSONError => error
+      # puts error
+      # puts 'JSON parse error'
+      raise error
+    end
+
+    def fetch
+      @client.get api_url
+    rescue Faraday::ClientError => error
+      # TODO: Handle connection error
+      # puts 'Connection Error'
+      raise error
+    end
+
+    def fetch_json
+      fetch.body
+    end
+
+    def represented_collection(json)
+      representer.for_collection.new([]).from_json(json)
     end
 
     def represented(json)
       representer.new(OpenStruct.new).from_json(json)
+    end
+
+    def save_item(obj)
+      @repo.create(obj.to_h)
     end
 
     def representer

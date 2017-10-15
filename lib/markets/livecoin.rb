@@ -19,15 +19,14 @@ module Markets
     end
 
     def parse
-      list = JSON.parse(fetch.body)
-      list.each do |coin|
-        obj = represented(coin.to_json)
-        @repo.create(obj.to_h)
+      represented_collection(fetch_json).each do |coin|
+        save_item(coin)
       end
     end
 
     class Representer < Representable::Decorator
       include Representable::JSON
+      collection_representer class: OpenStruct
 
       property :market,     default: 'livecoin'
       property :currency,   as: :cur

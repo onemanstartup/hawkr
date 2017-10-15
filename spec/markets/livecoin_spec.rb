@@ -13,4 +13,17 @@ describe Markets::Livecoin do
       expect(market.fetch.status).to eq(200)
     end
   end
+
+  it 'parses' do
+    VCR.use_cassette('livecoin') do
+      response = market.fetch.body
+      expect(market.represented_collection(response).size).not_to eq(0)
+    end
+  end
+
+  # it 'save tickers' do
+  #   VCR.use_cassette('livecoin') do
+  #     expect(market.parse).to be_nil
+  #   end
+  # end
 end
