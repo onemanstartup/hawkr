@@ -2,12 +2,17 @@
 
 require_relative './base_http'
 
-# https://developers.quoine.com
-# API users should not make more than 300 requests per 5 minute. Requests go beyond the limit will return with a 429 status
 module Markets
+  # https://developers.quoine.com
+  # API users should not make more than 300 requests per 5 minute. Requests go beyond the limit will return with a 429 status
+  # Have pusher channels?
   class Quoine < BaseHttp
     def api_base
       'https://api.quoine.com'
+    end
+
+    def headers
+      { 'X-Quoine-API-Version' => '2' }
     end
 
     def api_url

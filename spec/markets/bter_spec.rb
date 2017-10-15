@@ -2,10 +2,10 @@
 
 require_relative '../spec_helper'
 
-describe Markets::Quoine do
+describe Markets::Bter do
   subject(:market) { described_class.new(repo: RomBoot.test.tickers_repo) }
 
-  let(:market_name) { 'quoine' }
+  let(:market_name) { 'bter' }
 
   it { is_expected.not_to be_nil }
   include_examples 'market'
@@ -16,7 +16,7 @@ describe Markets::Quoine do
     end
   end
 
-  fit 'parses' do
+  it 'parses' do
     VCR.use_cassette(market_name) do
       response = market.fetch_json
       expect(market.represented_collection(response).size).not_to eq(0)

@@ -4,8 +4,10 @@ module Markets
   class BaseHttp
     def initialize(repo:)
       @repo = repo
-      @client = Faraday.new(url: api_base)
+      @client = Faraday.new(url: api_base, headers: headers)
     end
+
+    def headers; end
 
     def api_base
       raise NotImplementedError
