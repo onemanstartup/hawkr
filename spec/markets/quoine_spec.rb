@@ -16,7 +16,7 @@ describe Markets::Quoine do
     end
   end
 
-  fit 'parses' do
+  it 'parses' do
     VCR.use_cassette(market_name) do
       response = market.fetch_json
       expect(market.represented_collection(response).size).not_to eq(0)

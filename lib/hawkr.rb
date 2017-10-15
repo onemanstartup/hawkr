@@ -14,6 +14,7 @@ require_relative 'markets/coinone'
 require_relative 'markets/bithumb'
 require_relative 'markets/quoine'
 require_relative 'markets/bter'
+require_relative 'markets/kraken'
 # websocket based
 require_relative 'markets/gdax'
 require 'raven/base'

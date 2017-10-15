@@ -7,6 +7,8 @@ module Markets
       @client = Faraday.new(url: api_base, headers: headers)
     end
 
+    def prepare_ticker_request; end
+
     def headers; end
 
     def api_base
@@ -34,6 +36,7 @@ module Markets
     end
 
     def fetch
+      prepare_ticker_request
       @client.get api_url
     rescue Faraday::ClientError => error
       # TODO: Handle connection error

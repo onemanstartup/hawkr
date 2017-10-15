@@ -5,12 +5,6 @@ shared_examples 'market' do
 
   let(:full_api_url) { market.full_api_url }
 
-  it 'made request' do
-    stub_request(:any, full_api_url)
-    market.fetch
-    expect(WebMock).to have_requested(:get, full_api_url)
-  end
-
   it 'have api_url' do
     expect(market.api_url).not_to be_nil
   end
@@ -24,12 +18,12 @@ shared_examples 'market' do
   end
 
   it 'handles timeouts' do
-    stub_request(:any, market.full_api_url).to_timeout
+    stub_request(:any, /#{market.api_base}/).to_timeout
     expect { market.fetch }.to raise_error(Faraday::ClientError)
   end
 
   it 'handles json garbage' do
-    stub_request(:any, market.full_api_url).to_return(body: 'garbage', status: 200)
+    stub_request(:any, /#{market.api_base}/).to_return(body: 'garbage', status: 200)
     expect { market.parse_json }.to raise_error(JSON::JSONError)
   end
 end
