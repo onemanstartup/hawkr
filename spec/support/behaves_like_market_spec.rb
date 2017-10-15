@@ -17,13 +17,13 @@ shared_examples 'market' do
     expect(full_api_url).to eq(market.api_base + market.api_url)
   end
 
-  it 'handles timeouts' do
-    stub_request(:any, /#{market.api_base}/).to_timeout
-    expect { market.fetch }.to raise_error(Faraday::ClientError)
-  end
+  # it 'handles timeouts' do
+  #   stub_request(:any, /#{market.api_base}/).to_timeout
+  #   expect { market.fetch }.to raise_error(Faraday::ClientError)
+  # end
 
-  it 'handles json garbage' do
-    stub_request(:any, /#{market.api_base}/).to_return(body: 'garbage', status: 200)
-    expect { market.parse_json }.to raise_error(JSON::JSONError)
-  end
+  # it 'handles json garbage' do
+  #   stub_request(:any, /#{market.api_base}/).to_return(body: 'garbage', status: 200)
+  #   expect { market.parse_json }.to raise_error(JSON::JSONError)
+  # end
 end

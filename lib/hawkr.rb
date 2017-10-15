@@ -15,11 +15,13 @@ require_relative 'markets/bithumb'
 require_relative 'markets/quoine'
 require_relative 'markets/bter'
 require_relative 'markets/kraken'
+# Bitstamp can work through pusher, however pusher is shit
+require_relative 'markets/bitstamp'
 # chinese bullshit require_relative 'markets/btc38'
+# russian? php bullshit api without docs.. coinsbank
 # websocket based
 require_relative 'markets/gdax'
 require_relative 'markets/bitfinex'
-# require_relative 'markets/bitstamp'
 # require_relative 'markets/binance'
 # TODO: bitflyer is blocked for me
 # require_relative 'markets/bitflyer'
@@ -29,38 +31,26 @@ require_relative 'markets/bitfinex'
 # require_relative 'markets/okcoin'
 
 # This is localbitcoins
-# coincheckjpy
-# bitfinexusd
 # bitflyerjpy
-# bitstampusd
-# zaifjpy
-# geminiusd
-# korbit
-# okcoincny
-# lakeusd
-# wexusd
 # btcboxjpy
-# coinsbankeur
-# coinsbankrub
-# hitbtcusd
-# cexusd
-# cexiousd
-# bitstampeur
-# coinsbankusd
-# coinsbankgbp
-# oitbitusd
-# getbtcusd
-# okcoinusd
 # btcoididr
+# cexiousd
+# coincheckjpy
 # coinfloorgbp
-# Bitstamp
+# geminiusd
+# getbtcusd
+# hitbtcusd
+# korbit
+# lakeusd
+# oitbitusd
+# okcoinusd
+# wexusd
+# zaifjpy
 # Bitcoin Charts - https://bitcoincharts.com/markets/list/
 # Bitpay
 # BitcoinAverage
 #
 # This is bitcoinaverage.com
-# Bitfinex
-# Bitstamp
 # Gemini
 # Bittrex
 # Poloniex
@@ -72,8 +62,6 @@ require_relative 'markets/bitfinex'
 # Rock Trading
 # Bitsquare
 # Independent Reserve
-
-
 
 require 'raven/base'
 

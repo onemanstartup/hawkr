@@ -27,17 +27,17 @@ module Markets
       raise NotImplementedError
     end
 
-    def parse_json
-      JSON.parse(fetch.body)
+    def parse_json(response: nil)
+      JSON.parse((response || fetch).body)
     rescue JSON::JSONError => error
       # puts error
       # puts 'JSON parse error'
       raise error
     end
 
-    def fetch
+    def fetch(addon_url: '')
       prepare_ticker_request
-      @client.get api_url
+      @client.get(api_url + addon_url)
     rescue Faraday::ClientError => error
       # TODO: Handle connection error
       # puts 'Connection Error'

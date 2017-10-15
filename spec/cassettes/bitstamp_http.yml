@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.bitstamp.net/api/v2/ticker/btcusd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - x-requested-with, Content-Type, origin, accept, cache-control
+      Access-Control-Allow-Methods:
+      - POST, GET
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 15 Oct 2017 10:02:59 GMT
+      Etag:
+      - '"61611-b9-55b92fe9660d1"'
+      Last-Modified:
+      - Sun, 15 Oct 2017 10:02:58 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - "___utmvaLXumyLc=pNs\x01fhcW; path=/; Max-Age=900"
+      - '___utmvbLXumyLc=GZN XeyOFalW: atE; path=/; Max-Age=900'
+      - ___utmvmLXumyLc=qRwXQKLXJDd; path=/; Max-Age=900
+      - incap_ses_799_99025=DHg2Cu4FtmFEBOpIS54WC1Iy41kAAAAAJuaVwI16j6bycwa+wtyU0w==;
+        path=/; Domain=.bitstamp.net
+      - nlbi_99025=6+PpJlax5ntf2RbH8F1n9AAAAABohMqWLEDlwj779islSB/k; path=/; Domain=.bitstamp.net
+      - visid_incap_99025=unOQRSYrQn6G3KOlGasObFIy41kAAAAAQUIPAAAAAADW8Y0sJiqtJMvn2zomLfIX;
+        expires=Mon, 15 Oct 2018 08:28:27 GMT; path=/; Domain=.bitstamp.net
+      X-Iinfo:
+      - 12-41909302-41909216 2NNN RT(1508061778425 27) q(0 0 0 -1) r(0 0)
+      X-Cdn:
+      - Incapsula
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"high": "5830.00", "last": "5499.00", "timestamp": "1508061777", "bid":
+        "5491.86", "vwap": "5672.22", "volume": "11337.29141737", "low": "5452.00",
+        "ask": "5500.00", "open": "5795.01"}'
+    http_version:
+  recorded_at: Sun, 15 Oct 2017 10:02:59 GMT
+recorded_with: VCR 3.0.3
