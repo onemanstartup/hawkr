@@ -2,6 +2,10 @@
 
 require_relative './base_http'
 
+# https://www.bithumb.com/u1/US127
+# 20 request available per second.
+# If the request exceeds 20 calls per second, API usage will be limited,
+# and also the administrator's approval is reqqired to remove the limitation.(Phone contact required)
 module Markets
   class Bithumb < BaseHttp
     def api_base

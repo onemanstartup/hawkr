@@ -8,9 +8,12 @@ require 'representable/json'
 require 'websocket-eventmachine-client'
 require 'hawkr/version'
 require 'rom_boot'
+# http based
 require_relative 'markets/livecoin'
 require_relative 'markets/coinone'
 require_relative 'markets/bithumb'
+require_relative 'markets/quoine'
+# websocket based
 require_relative 'markets/gdax'
 require 'raven/base'
 
