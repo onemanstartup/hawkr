@@ -10,6 +10,7 @@ PATH
       rom (~> 4.0.0.rc)
       rom-sql (~> 2.0.0.rc)
       sentry-raven
+      wamp_client
       websocket-eventmachine-client
 
 GEM
@@ -70,6 +71,7 @@ GEM
     hashdiff (0.3.7)
     ice_nine (0.11.2)
     inflecto (0.0.2)
+    json (2.1.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     morpher (0.2.6)
@@ -187,6 +189,9 @@ GEM
       parser (>= 2.3.1.2, < 2.5)
       procto (~> 0.0.2)
     vcr (3.0.3)
+    wamp_client (0.0.8)
+      json
+      websocket-eventmachine-client
     webmock (3.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)

@@ -22,6 +22,8 @@ require_relative 'markets/bitstamp'
 # websocket based
 require_relative 'markets/gdax'
 require_relative 'markets/bitfinex'
+# Poloniex is working, but have somehat long initiation, dunno why
+require_relative 'markets/poloniex'
 # require_relative 'markets/binance'
 # TODO: bitflyer is blocked for me
 # require_relative 'markets/bitflyer'
@@ -37,7 +39,6 @@ require_relative 'markets/bitfinex'
 # cexiousd
 # coincheckjpy
 # coinfloorgbp
-# geminiusd
 # getbtcusd
 # hitbtcusd
 # korbit
@@ -51,7 +52,7 @@ require_relative 'markets/bitfinex'
 # BitcoinAverage
 #
 # This is bitcoinaverage.com
-# Gemini
+# Gemini doing
 # Bittrex
 # Poloniex
 # CEX.IO
@@ -81,7 +82,7 @@ repo = RomBoot.new.tickers_repo
 if ENV['RUN']
   Raven.capture do
     threads = []
-    [Markets::Bitfinex].each do |market|
+    [Markets::Poloniex].each do |market|
       threads << Thread.new do
         market.new(repo: repo).start
       end

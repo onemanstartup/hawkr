@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'faraday'
   spec.add_dependency 'websocket-eventmachine-client'
   spec.add_dependency 'sentry-raven'
+  spec.add_dependency 'wamp_client'
 
   spec.add_development_dependency 'bundler', '~> 1.16.a'
   spec.add_development_dependency 'rake', '~> 10.0'
