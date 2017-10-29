@@ -1,0 +1,16 @@
+db:
+ image: timescaledb:latest
+ ports:
+   - '5432:5432'
+  environment:
+    POSTGRES_USER: postgres
+
+web:
+ build: .
+ command: bundle exec puma config.ru
+  environment:
+    RUNSERVER: 1
+ ports:
+   - "9292:9292"
+ links:
+   - db

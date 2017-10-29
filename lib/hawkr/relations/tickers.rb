@@ -2,6 +2,7 @@
 
 class Tickers < ROM::Relation[:sql]
   schema(:tickers) do
+    attribute :time,       Types::DateTime
     attribute :market,     Types::Coercible::String
     attribute :currency,   Types::Coercible::String
     attribute :ticker,     Types::Coercible::String

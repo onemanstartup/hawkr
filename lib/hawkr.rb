@@ -91,3 +91,36 @@ if ENV['RUN']
     threads.each(&:join)
   end
 end
+
+class TickerRepresenter < Representable::Decorator
+  include Representable::JSON
+
+  collection :to_a, as: :tickers do
+    property :time
+    property :market
+    property :currency
+    property :ticker
+    property :price
+    property :bid
+    property :ask
+    property :low_24h
+    property :high_24h
+    property :avg_24h
+    property :volume_24h
+    property :volume_30d
+  end
+end
+
+if ENV['RUNSERVER']
+  require 'roda'
+
+  class App < Roda
+    route do |r|
+      @repo = RomBoot.new.tickers_repo
+      response['Content-Type'] = 'application/json'
+      r.root do
+        TickerRepresenter.new(@repo.all.to_a).to_json
+      end
+    end
+  end
+end

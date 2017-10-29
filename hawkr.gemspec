@@ -28,9 +28,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.add_dependency 'rom', '~> 4.0.0.rc'
-  spec.add_dependency 'rom-sql', '~> 2.0.0.rc'
+  spec.add_dependency 'rom', '~> 4.0.0'
+  spec.add_dependency 'rom-sql', '~> 2.0.0'
   spec.add_dependency 'pg'
+  spec.add_dependency 'roda'
+  spec.add_dependency 'puma'
   spec.add_dependency 'dry-types'
   spec.add_dependency 'representable'
   spec.add_dependency 'multi_json'

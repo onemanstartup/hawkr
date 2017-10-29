@@ -77,7 +77,6 @@ module Markets
           end
 
           puts 'Trying to open'
-          byebug
           wamp.open
           puts 'SHould not happen'
         # end
