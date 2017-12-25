@@ -2,7 +2,7 @@
 
 module Markets
   class BaseWebsocket
-    def initialize(repo:)
+    def initialize(repo: nil)
       @repo = repo
     end
 

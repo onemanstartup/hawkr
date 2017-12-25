@@ -2,18 +2,22 @@ version: '2'
 
 services:
   db:
-   image: timescaledb:latest
-   ports:
-     - '5432:5432'
+    image: timescale/timescaledb:0.8.0-pg10
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hawkr_db
 
   web:
-   build: .
-   command: bundle exec puma config.ru
+    build: .
+    command: bin/deploy
     environment:
       RUNSERVER: 1
-   ports:
-     - "9292:9292"
-   links:
-     - db
+    ports:
+      - "9292:9292"
+    depends_on:
+      - db
+    links:
+      - db

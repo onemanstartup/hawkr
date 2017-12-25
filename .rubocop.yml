@@ -7,7 +7,7 @@ AllCops:
     - 'hawkr.gemspec'
 
 Metrics/LineLength:
-  Max: 160
+  Max: 400
 
 Documentation:
   Description: 'Document classes and non-namespace modules.'
@@ -19,3 +19,9 @@ AsciiComments:
 
 RSpec/ExampleLength:
   Max: 15
+
+Layout/EmptyLinesAroundArguments:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false

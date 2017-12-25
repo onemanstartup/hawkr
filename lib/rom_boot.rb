@@ -3,13 +3,13 @@
 require 'rom-sql'
 require 'rom-repository'
 require 'pg'
-require 'hawkr/relations/tickers'
-require 'hawkr/repositories'
+require_relative 'hawkr/relations/tickers'
+require_relative 'hawkr/repositories'
 
 class RomBoot
   attr_reader :rom, :tickers_repo
 
-  def initialize(rom_type: :sql, address: 'postgres://localhost/hawkr_db')
+  def initialize(rom_type: :sql, address: 'postgres://postgres:postgres@db/hawkr_db')
     @rom = ROM.container(rom_type, address) do |conf|
       conf.register_relation(Tickers)
     end

@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 
-require 'byebug'
 require 'dry-types'
 require 'faraday'
 require 'json'
 require 'representable/json'
 require 'websocket-eventmachine-client'
-require 'hawkr/version'
-require 'rom_boot'
+require_relative 'hawkr/version'
+require_relative 'rom_boot'
 # http based
 require_relative 'markets/livecoin'
 require_relative 'markets/coinone'

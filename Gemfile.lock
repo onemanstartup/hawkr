@@ -1,20 +1,3 @@
-PATH
-  remote: .
-  specs:
-    hawkr (0.1.0)
-      dry-types
-      faraday
-      multi_json
-      pg
-      puma
-      representable
-      roda
-      rom (~> 4.1.1)
-      rom-sql (~> 2.3.0)
-      sentry-raven
-      wamp_client
-      websocket-eventmachine-client
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -218,14 +201,25 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16.a)
   byebug
-  hawkr!
+  dry-types
+  faraday
+  multi_json
   mutant-rspec (~> 0.8.14)
+  pg
+  puma
   rake (~> 12.3)
+  representable
+  roda
+  rom (~> 4.1.1)
+  rom-sql (~> 2.3.0)
   rspec (~> 3.6)
   rubocop
   rubocop-rspec
+  sentry-raven
   vcr
+  wamp_client
   webmock
+  websocket-eventmachine-client
 
 BUNDLED WITH
    1.16.0.pre.3
