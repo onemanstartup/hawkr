@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'retriable'
 require 'dry-types'
 require 'faraday'
 require 'json'
@@ -67,6 +68,10 @@ require 'raven/base'
 
 Raven.configure do |config|
   config.dsn = 'https://d9f6fd3569114796b4d606aee5cf3521:5619d906e1ea4aa2b987cef7c4ce7376@s.crypto.deals//4'
+  config.transport_failure_callback = lambda { |event|
+    puts 'Failed to send error to sentry'
+    puts event
+  }
 end
 
 module Hawkr
@@ -81,9 +86,11 @@ repo = RomBoot.new.tickers_repo
 if ENV['RUN']
   Raven.capture do
     threads = []
-    [Markets::Poloniex].each do |market|
+    [Markets::Bitfinex].each do |market|
       threads << Thread.new do
-        market.new(repo: repo).start
+        Retriable.retriable do
+          market.new(repo: repo).start
+        end
       end
     end
 

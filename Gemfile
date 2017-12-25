@@ -21,6 +21,8 @@ gem 'sentry-raven'
 gem 'wamp_client'
 gem 'websocket-eventmachine-client'
 
+gem 'retriable', '~> 3.1'
+
 group :development, :test do
   gem 'bundler', '~> 1.16.a'
   gem 'byebug'

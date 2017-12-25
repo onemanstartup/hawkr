@@ -71,7 +71,7 @@ module Markets
       return unless parsed_json.is_a?(Array) && parsed_json[-1].is_a?(Array)
       data = parsed_json[-1]
       pair = pairs[parsed_json[0]]
-      return if pair == 'ERROR'
+      return if ['ERROR', nil].include?(pair)
       currency, ticker = pair.scan(/.{3}/)
       obj = OpenStruct.new(
         market: 'bitfinex',

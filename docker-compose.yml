@@ -15,8 +15,20 @@ services:
     command: bin/deploy
     environment:
       RUNSERVER: 1
+      PORT: 9292
     ports:
       - "9292:9292"
+    depends_on:
+      - db
+    links:
+      - db
+
+  parser:
+    build: .
+    command: bin/deploy
+    environment:
+      RUN: 1
+      PORT: 9393
     depends_on:
       - db
     links:
