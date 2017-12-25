@@ -32,4 +32,8 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'vcr'
   gem 'webmock'
+
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'json_schema'
 end

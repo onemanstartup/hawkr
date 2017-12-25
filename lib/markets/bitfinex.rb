@@ -28,7 +28,7 @@ module Markets
         pairs.reduce([]) do |memo, value|
           memo << { event: 'subscribe',
                     channel: 'ticker',
-                    symbol: value }
+                    symbol: "t#{value}" }
         end
     end
 
@@ -68,13 +68,20 @@ module Markets
     # LOW	float	Daily low
     def parse(msg)
       parsed_json = MultiJson.load(msg)
+      puts parsed_json
+      @pairs_to_chan_id ||= {}
+
+      @pairs_to_chan_id[parsed_json['chanId'].to_s] = parsed_json['pair'] if parsed_json.is_a?(Hash)
+
       return unless parsed_json.is_a?(Array) && parsed_json[-1].is_a?(Array)
       data = parsed_json[-1]
-      pair = pairs[parsed_json[0]]
+      pair = @pairs_to_chan_id[parsed_json[0].to_s]
       return if ['ERROR', nil].include?(pair)
       currency, ticker = pair.scan(/.{3}/)
+      market = 'bitfinex'
       obj = OpenStruct.new(
-        market: 'bitfinex',
+        unique_ticker: "#{market}:#{currency}:#{ticker}",
+        market: market,
         currency: currency,
         ticker: ticker,
         bid: data[0],

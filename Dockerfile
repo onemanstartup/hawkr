@@ -20,8 +20,8 @@ RUN apk update && \
 RUN mkdir /usr/app
 WORKDIR /usr/app
 
-ADD Gemfile /usr/app/
-ADD Gemfile.lock /usr/app/
+COPY Gemfile /usr/app/
+COPY Gemfile.lock /usr/app/
 # COPY hawkr.gemspec /usr/app/
 RUN bundle install --without development test
 

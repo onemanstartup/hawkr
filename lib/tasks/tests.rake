@@ -19,7 +19,6 @@ rescue LoadError
   puts 'You are running in wrong environment or forget to install gems'
 end
 
-
 task default: %i[spec]
 
 begin
@@ -33,4 +32,3 @@ begin
 rescue LoadError
   puts 'You are running in wrong environment or forget to install gems'
 end
-

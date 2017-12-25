@@ -102,18 +102,19 @@ class TickerRepresenter < Representable::Decorator
   include Representable::JSON
 
   collection :to_a, as: :tickers do
-    property :time
-    property :market
-    property :currency
-    property :ticker
-    property :price
-    property :bid
-    property :ask
-    property :low_24h
-    property :high_24h
-    property :avg_24h
-    property :volume_24h
-    property :volume_30d
+    # property :time, default: Time.now
+    property :unique_ticker
+    # property :market
+    # property :currency
+    # property :ticker
+    property :price, render_filter: ->(input, _options) { input.to_f }
+    property :bid, render_filter: ->(input, _options) { input.to_f }
+    property :ask, render_filter: ->(input, _options) { input.to_f }
+    property :low_24h, render_filter: ->(input, _options) { input.to_f }
+    property :high_24h, render_filter: ->(input, _options) { input.to_f }
+    property :avg_24h, render_filter: ->(input, _options) { input.to_f }
+    property :volume_24h, render_filter: ->(input, _options) { input.to_f }
+    property :volume_30d, render_filter: ->(input, _options) { input.to_f }
   end
 end
 
