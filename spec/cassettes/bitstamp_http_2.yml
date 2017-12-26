@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.bitstamp.net/api/v2/ticker/btcusd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.13.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept-Ranges:
+      - bytes
+      Access-Control-Allow-Headers:
+      - x-requested-with, Content-Type, origin, accept, cache-control
+      Access-Control-Allow-Methods:
+      - POST, GET
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 26 Dec 2017 08:46:34 GMT
+      Etag:
+      - W/"6236a-c0-5613a51e6724b"
+      Last-Modified:
+      - Tue, 26 Dec 2017 08:46:33 GMT
+      Server:
+      - Apache
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - incap_ses_379_99025=Da7zLTrHXzMDmvv6hHpCBWoMQloAAAAADxSbLU4aQOIKDfV7SR/4SQ==;
+        path=/; Domain=.bitstamp.net
+      - nlbi_99025=tn6PX6NSe3ZQVifP8F1n9AAAAADacm24XhYSQtYpQnOiDwa4; path=/; Domain=.bitstamp.net
+      - visid_incap_99025=uMyfEuv8Ry2g/0La9hHD7moMQloAAAAAQUIPAAAAAAA6nPqYijmOSYNRLoshX96p;
+        expires=Wed, 26 Dec 2018 08:32:59 GMT; path=/; Domain=.bitstamp.net
+      X-Iinfo:
+      - 14-163670586-163667537 2NNN RT(1514277993951 32) q(0 0 0 -1) r(1 1)
+      X-Cdn:
+      - Incapsula
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"high": "15591.98", "last": "15200.00", "timestamp": "1514277992",
+        "bid": "15200.00", "vwap": "14407.05", "volume": "13042.68509695", "low":
+        "13465.00", "ask": "15202.00", "open": "13925.50"}'
+    http_version: 
+  recorded_at: Tue, 26 Dec 2017 08:46:34 GMT
+recorded_with: VCR 4.0.0

@@ -21,7 +21,12 @@ module Markets
 
     def parse
       represented_collection(fetch_json).each do |coin|
-        save_item(coin)
+        begin
+          save_item(coin)
+        rescue => e
+          # Some problems with eth:cny and eth:inr
+          puts e
+        end
       end
     end
 

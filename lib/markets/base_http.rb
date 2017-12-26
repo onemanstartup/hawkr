@@ -62,8 +62,8 @@ module Markets
 
     def save_item(obj)
       hash = obj.to_h
-      hash[:unique_ticker] = "#{obj.market}:#{obj.currency}:#{obj.ticker}",
-                             @repo.create(hash)
+      hash[:unique_ticker] = "#{obj.market}:#{obj.currency}:#{obj.ticker}"
+      @repo.create(hash)
     end
 
     def representer
@@ -76,7 +76,8 @@ module Markets
         begin
           parse
         rescue => ex
-          puts ex
+          puts ex.inspect
+          puts ex.backtrace
         end
         puts 'waiting'
         sleep 59

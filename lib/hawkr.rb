@@ -86,10 +86,29 @@ repo = RomBoot.new.tickers_repo
 if ENV['RUN']
   Raven.capture do
     threads = []
-    [Markets::Bitfinex].each do |market|
+    [
+      Markets::Bitfinex,
+      Markets::Livecoin,
+      Markets::Coinone,
+      Markets::Bithumb,
+      Markets::Quoine,
+      # Markets::Bter, # They disabled api
+      Markets::Kraken,
+      Markets::Bitstamp,
+      Markets::Gdax,
+      # Markets::Poloniex, # wamp unstable
+    ].each do |market|
       threads << Thread.new do
-        Retriable.retriable do
-          market.new(repo: repo).start
+        begin
+          Retriable.retriable do
+            market.new(repo: repo).start
+          end
+        rescue => e
+          puts "RESCUE #{market} #{e.inspect}"
+          # run this if retriable ends up re-rasing the exception
+        else
+          puts "ok #{market}"
+          # run this if retriable doesn't raise any exceptions
         end
       end
     end

@@ -32,7 +32,9 @@ module Markets
     end
 
     def save_item(obj)
-      @repo.create(obj.to_h)
+      hash = obj.to_h
+      hash[:unique_ticker] = "#{obj.market}:#{obj.currency}:#{obj.ticker}"
+      @repo.create(hash)
     end
 
     def representer

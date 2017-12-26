@@ -8,7 +8,7 @@ require 'rom/sql/rake_task'
 namespace :db do
   task :setup do
     rom = if ENV['TEST']
-            ROM.container(:sql, 'postgres://postgres:postgres@localhost/hawkr_db')
+            ROM.container(:sql, 'postgres://postgres:postgres@localhost:5435/hawkr_db')
           else
             ROM.container(:sql, 'postgres://postgres:postgres@db/hawkr_db')
           end

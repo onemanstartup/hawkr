@@ -11,7 +11,7 @@ module Markets
     def send_on_open
       {
         type: 'subscribe',
-        product_ids: ['ETH-USD', 'BTC-USD', 'LTC-USD'],
+        product_ids: ['ETH-USD', 'BTC-USD', 'LTC-USD', 'BCH-USD'],
         channels: %w[heartbeat ticker]
       }
     end

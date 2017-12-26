@@ -25,8 +25,8 @@ module Markets
     end
 
     def parse
-      %w[btcusd btceur eurusd xrpusd xrpeur xrpbtc ltcusd ltceur ltcbtc ethusd etheur ethbtc'].each do |pair|
-        coin = represented(parse_json(response: fetch(addon_url: pair)))
+      %w[btcusd btceur eurusd xrpusd xrpeur xrpbtc ltcusd ltceur ltcbtc ethusd etheur ethbtc].each do |pair|
+        coin = represented(parse_json(response: fetch(addon_url: pair)).to_json)
         currency, ticker = pair.scan(/.{3}/)
         coin.currency = currency
         coin.ticker = ticker

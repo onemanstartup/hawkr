@@ -18,14 +18,21 @@ module Markets
 
     def parse
       represented_collection(fetch_json).each do |coin|
-        save_item(coin)
+        begin
+          save_item(coin)
+        rescue => e
+          puts e
+          puts coin.inspect
+        end
       end
     end
 
     def prepare_json(json)
       json['data'].reduce([]) do |memo, value|
         next memo if %w[date].include?(value[0])
-        memo << value[1]
+        new_hash = value[1]
+        new_hash[:currency] = value[0]
+        memo << new_hash
       end
     end
 
