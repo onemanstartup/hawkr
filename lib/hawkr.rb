@@ -120,13 +120,31 @@ end
 
 if ENV['RUNSERVER']
   require 'roda'
+  require 'readthis'
+  require 'oj'
+
+  Readthis.fault_tolerant = true
+  Readthis.serializers << Oj
+  # Freeze the serializers to ensure they aren't changed at runtime.
+  Readthis.serializers.freeze!
+
 
   class App < Roda
     route do |r|
-      @repo = RomBoot.new.tickers_repo
+      @cache ||= Readthis::Cache.new(
+        expires_in: 60, # 1 minute
+        redis: { url: 'redis://redis:6380/2', driver: :hiredis },
+        marshal: Oj
+      )
+      @repo ||= RomBoot.new.tickers_repo
       response['Content-Type'] = 'application/json'
+
       r.root do
-        TickerRepresenter.new(@repo.all.to_a).to_json
+        @cache.fetch('markets') do |key|
+          result = TickerRepresenter.new(@repo.markets.to_a).to_json
+          @cache.write(key, result)
+          result
+        end
       end
     end
   end

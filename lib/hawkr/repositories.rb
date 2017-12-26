@@ -29,15 +29,15 @@ module Hawkr
             FROM tickers
             GROUP BY unique_ticker;
          ')
-        # .select { last(market, time).as(:market) }
-        # .select { string::concat(market, ':', currency, ':', ticker).as(:market) }
-        # .order(:time)
-        # .distinct(:market, :currency, :ticker)
-        # .group(:market, :currency, :ticker) #{ [market.qualified, currency.qualified, time.qualified, price.qualified, bid.qualified, ask.qualified, low_24h.qualified, high_24h.qualified, avg_24h.qualified, volume_24h.qualified, volume_30d.qualified] }
-        # .max(:time)
-        # .otder(:time)
-        # .group([:market, :currency, :ticker]) { [time.qualified, price.qualified, bid.qualified, ask.qualified, low_24h.qualified, high_24h.qualified, avg_24h.qualified, volume_24h.qualified, volume_30d.qualified] }
-        # .distinct(%i[market currency ticker])
+      # .select { last(market, time).as(:market) }
+      # .select { string::concat(market, ':', currency, ':', ticker).as(:market) }
+      # .order(:time)
+      # .distinct(:market, :currency, :ticker)
+      # .group(:market, :currency, :ticker) #{ [market.qualified, currency.qualified, time.qualified, price.qualified, bid.qualified, ask.qualified, low_24h.qualified, high_24h.qualified, avg_24h.qualified, volume_24h.qualified, volume_30d.qualified] }
+      # .max(:time)
+      # .otder(:time)
+      # .group([:market, :currency, :ticker]) { [time.qualified, price.qualified, bid.qualified, ask.qualified, low_24h.qualified, high_24h.qualified, avg_24h.qualified, volume_24h.qualified, volume_30d.qualified] }
+      # .distinct(%i[market currency ticker])
     end
   end
 end

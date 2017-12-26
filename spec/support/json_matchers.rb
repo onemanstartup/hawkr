@@ -18,7 +18,7 @@ RSpec::Matchers.define :match_response do |_schema|
 
     begin
       @result = schema.validate!(response)
-    rescue => e
+    rescue StandardError => e
       p e
       raise
     end

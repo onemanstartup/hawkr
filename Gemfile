@@ -23,6 +23,10 @@ gem 'websocket-eventmachine-client'
 
 gem 'retriable', '~> 3.1'
 
+gem 'hiredis' # Fast redis
+gem 'oj' # Fast serialization
+gem 'readthis' # Redis caching
+
 group :development, :test do
   gem 'bundler', '~> 1.16.a'
   gem 'byebug'
