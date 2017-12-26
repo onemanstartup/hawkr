@@ -43,36 +43,31 @@ module Markets
 
     # rubocop:disable all
     def start
-      Thread.new do
-        loop do
-          EM.run do
-            ws = WebSocket::EventMachine::Client.connect(uri: feed_url, ssl: ssl?)
-            puts 'ws connection'
-            puts 'send'
+      EM.run do
+        ws = WebSocket::EventMachine::Client.connect(uri: feed_url, ssl: ssl?)
+        puts "ws connection send #{self.class.to_s}"
 
-            ws.onopen do
-              puts 'Connected'
-              if send_on_open
-                if send_on_open.is_a?(Array)
-                  send_on_open.each do |message|
-                    ws.send(message.to_json)
-                  end
-                else
-                  ws.send(send_on_open.to_json)
-                end
+        ws.onopen do
+          puts 'Connected'
+          if send_on_open
+            if send_on_open.is_a?(Array)
+              send_on_open.each do |message|
+                ws.send(message.to_json)
               end
-            end
-
-            ws.onmessage do |msg, _type|
-              parse(msg)
-            end
-
-            ws.onclose do |code, _reason|
-              puts "Disconnected with status code: #{code}"
+            else
+              ws.send(send_on_open.to_json)
             end
           end
         end
-      end.join
+
+        ws.onmessage do |msg, _type|
+          parse(msg)
+        end
+
+        ws.onclose do |code, _reason|
+          puts "Disconnected with status code: #{code}"
+        end
+      end
     end
   end
 end

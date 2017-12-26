@@ -9,11 +9,10 @@ module Markets
     def pairs
       # Taken from theirs website
       # 0, 1, 19 is absent
-      %w[ERROR
-         ERROR BTCUSD LTCUSD LTCBTC ETHUSD
+      %w[BTCUSD LTCUSD LTCBTC ETHUSD
          ETHBTC ETCBTC ETCUSD RRTUSD RRTBTC
          ZECUSD ZECBTC XMRUSD XMRBTC DSHUSD
-         DSHBTC BCCBTC BCUBTC ERROR BCCUSD
+         DSHBTC BCCBTC BCUBTC BCCUSD
          BCUUSD XRPUSD XRPBTC IOTUSD IOTBTC
          IOTETH EOSUSD EOSBTC EOSETH SANUSD
          SANBTC SANETH OMGUSD OMGBTC OMGETH]
@@ -91,7 +90,7 @@ module Markets
         high_24h: data[8],
         low_24h: data[9]
       )
-      save_item(obj.to_h)
+      save_item(obj)
     end
   end
 end
