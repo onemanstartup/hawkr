@@ -170,10 +170,11 @@ if ENV['RUNSERVER']
         r.get do
           @cache.fetch('crypto') do |key|
             representer = TickerRepresenter.new(@repo.markets.to_a)
-            result = representer.to_hash['tickers'].map do |t|
+            result = representer.to_hash['tickers'].each_with_object({}) do |t, m|
               unique_ticker = t.delete('unique_ticker')
-              t.each_with_object([]) { |(k, v), m| m << { "#{unique_ticker}:#{k}".downcase.tr(':', '_') => v } }
-            end.flatten.to_json
+              market = t.each_with_object({}) { |(k,v), m| m["#{unique_ticker}:#{k}".downcase.tr(':','_')] = v }
+              m.merge!(market)
+            end.to_json
             @cache.write(key, result)
             result
           end

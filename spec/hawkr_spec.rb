@@ -20,10 +20,11 @@ RSpec.describe Hawkr do
     tickers = @repo.markets.to_a
     representer = TickerRepresenter.new(tickers)
 
-    representer.to_hash['tickers'].map do |t|
-      unique_ticker = t.delete('unique_ticker')
-      t.each_with_object([]) { |(k,v), m| m << { "#{unique_ticker}:#{k}".downcase.tr(':','_') => v } }
-    end
+    # result = representer.to_hash['tickers'].each_with_object({}) do |t, m|
+    #   unique_ticker = t.delete('unique_ticker')
+    #   market = t.each_with_object({}) { |(k,v), m| m["#{unique_ticker}:#{k}".downcase.tr(':','_')] = v }
+    #   m.merge!(market)
+    # end
     expect(representer).to match_response
   end
 end
