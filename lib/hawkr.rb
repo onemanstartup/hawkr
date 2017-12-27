@@ -103,7 +103,7 @@ if ENV['RUN']
           Retriable.retriable do
             market.new(repo: repo).start
           end
-        rescue => e
+        rescue StandardError => e
           puts "RESCUE #{market} #{e.inspect}"
           # run this if retriable ends up re-rasing the exception
         else
@@ -147,7 +147,6 @@ if ENV['RUNSERVER']
   # Freeze the serializers to ensure they aren't changed at runtime.
   Readthis.serializers.freeze!
 
-
   class App < Roda
     route do |r|
       @cache ||= Readthis::Cache.new(
@@ -161,8 +160,23 @@ if ENV['RUNSERVER']
       r.root do
         @cache.fetch('markets') do |key|
           result = TickerRepresenter.new(@repo.markets.to_a).to_json
+
           @cache.write(key, result)
           result
+        end
+      end
+
+      r.is 'crypto' do
+        r.get do
+          @cache.fetch('crypto') do |key|
+            representer = TickerRepresenter.new(@repo.markets.to_a)
+            result = representer.to_hash['tickers'].map do |t|
+              unique_ticker = t.delete('unique_ticker')
+              t.each_with_object([]) { |(k, v), m| m << { "#{unique_ticker}:#{k}".downcase.tr(':', '_') => v } }
+            end.flatten.to_json
+            @cache.write(key, result)
+            result
+          end
         end
       end
     end
