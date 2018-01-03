@@ -16,7 +16,7 @@ module Hawkr
 
     def markets
       tickers
-        .read('
+        .read("
             SELECT unique_ticker,
                    last(price, time) as price,
                    last(bid, time) as bid,
@@ -27,8 +27,13 @@ module Hawkr
                    last(volume_24h, time) as volume_24h,
                    last(volume_30d, time) as volume_30d
             FROM tickers
+            WHERE time >= (NOW() - INTERVAL '1 hour' )
             GROUP BY unique_ticker;
-         ')
+         ")
+        # .read("
+        #   SELECT time_bucket('10 minutes', time) as minutes
+        # ")
+        # .distinct(:market, :currency, :ticker)
       # .select { last(market, time).as(:market) }
       # .select { string::concat(market, ':', currency, ':', ticker).as(:market) }
       # .order(:time)
