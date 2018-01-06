@@ -19,7 +19,6 @@ RSpec.describe Hawkr do
     @repo = RomBoot.new.tickers_repo
     tickers = @repo.markets.to_a
     representer = TickerRepresenter.new(tickers)
-
     # result = representer.to_hash['tickers'].each_with_object({}) do |t, m|
     #   unique_ticker = t.delete('unique_ticker')
     #   market = t.each_with_object({}) { |(k,v), m| m["#{unique_ticker}:#{k}".downcase.tr(':','_')] = v }

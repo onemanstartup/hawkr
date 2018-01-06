@@ -141,20 +141,32 @@ if ENV['RUNSERVER']
   require 'roda'
   require 'readthis'
   require 'oj'
+  require 'singleton'
 
   Readthis.fault_tolerant = true
   Readthis.serializers << Oj
   # Freeze the serializers to ensure they aren't changed at runtime.
   Readthis.serializers.freeze!
 
+  class DB
+    include Singleton
+    attr_reader :tickers_repo
+
+    def initialize
+      puts 'DB romboot initialize'
+      @romboot = RomBoot.new
+      @tickers_repo = @romboot.tickers_repo
+    end
+  end
+
   class App < Roda
     route do |r|
+      @repo = DB.instance.tickers_repo
       @cache ||= Readthis::Cache.new(
         expires_in: 60, # 1 minute
         redis: { url: 'redis://redis:6380/2', driver: :hiredis },
         marshal: Oj
       )
-      @repo ||= RomBoot.new.tickers_repo
       response['Content-Type'] = 'application/json'
 
       r.root do
