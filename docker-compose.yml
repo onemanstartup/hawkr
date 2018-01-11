@@ -7,8 +7,6 @@ volumes:
 services:
   db:
     image: timescale/timescaledb:0.8.0-pg10
-    ports:
-      - '5435:5432'
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -19,8 +17,6 @@ services:
   redis:
     image: redis:latest
     command: redis-server --port 6380
-    # ports:
-    #   - "6380:6380"
     volumes:
       - "redis:/var/lib/redis/data"
 
