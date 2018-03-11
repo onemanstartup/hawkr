@@ -1,0 +1,70 @@
+---
+version: '3.5'
+
+volumes:
+  redis:
+  postgres:
+
+services:
+  db:
+    image: timescale/timescaledb:0.9.0-pg10
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hawkr_db
+    volumes:
+      - "postgres:/var/lib/postgresql/data"
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.id == front]
+      update_config:
+        parallelism: 0
+        order: start-first
+        delay: 15s
+
+  redis:
+    image: redis:latest
+    command: redis-server --port 6380
+    volumes:
+      - "redis:/var/lib/redis/data"
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.id == front]
+      update_config:
+        parallelism: 0
+        order: start-first
+        delay: 15s
+
+  web:
+    image: registry7164683.crypto.deals:4567/crypto/crde/hawkr:latest
+    command: bin/deploy
+    environment:
+      RUNSERVER: 1
+      PORT: 9292
+    ports:
+      - "9292:9292"
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.id == front]
+      update_config:
+        parallelism: 0
+        order: start-first
+        delay: 15s
+
+  parser:
+    image: registry7164683.crypto.deals:4567/crypto/crde/hawkr:latest
+    command: bin/deploy
+    environment:
+      RUN: 1
+      PORT: 9393
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.labels.id == front]
+      update_config:
+        parallelism: 0
+        order: start-first
+        delay: 15s

@@ -1,4 +1,4 @@
-FROM ruby:2.4.3-alpine3.7
+FROM ruby:2.5.0-alpine3.7
 MAINTAINER Kado Nakamura <kadonakamura@protonmail.com>
 
 # g++ musl-dev make

@@ -27,6 +27,8 @@ gem 'hiredis' # Fast redis
 gem 'oj' # Fast serialization
 gem 'readthis' # Redis caching
 
+gem 'cryptoexchange' # For experimentation with markets
+
 group :development, :test do
   gem 'bundler', '~> 1.16.a'
   gem 'byebug'
