@@ -5,6 +5,10 @@ volumes:
   redis:
   postgres:
 
+networks:
+  crde_default: 
+    external: true
+
 services:
   db:
     image: timescale/timescaledb:0.9.0-pg10
@@ -17,7 +21,7 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.labels.id == front]
+        constraints: [node.role == worker]
       update_config:
         parallelism: 0
         order: start-first
@@ -31,7 +35,7 @@ services:
     deploy:
       replicas: 1
       placement:
-        constraints: [node.labels.id == front]
+        constraints: [node.role == worker]
       update_config:
         parallelism: 0
         order: start-first
@@ -43,12 +47,17 @@ services:
     environment:
       RUNSERVER: 1
       PORT: 9292
-    ports:
-      - "9292:9292"
+    networks:
+      - crde_default
+      - default
     deploy:
       replicas: 1
       placement:
-        constraints: [node.labels.id == front]
+        constraints: [node.role == worker]
+      labels:
+        traefik.port: 9292
+        traefik.enable: "true"
+        traefik.frontend.rule: Host:hawkr.staging.crypto.deals
       update_config:
         parallelism: 0
         order: start-first
@@ -60,10 +69,12 @@ services:
     environment:
       RUN: 1
       PORT: 9393
+    networks:
+      - default
     deploy:
       replicas: 1
       placement:
-        constraints: [node.labels.id == front]
+        constraints: [node.role == worker]
       update_config:
         parallelism: 0
         order: start-first
