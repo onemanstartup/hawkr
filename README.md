@@ -13,3 +13,11 @@
 
 - go to psql and run command below
 - alter extension timescaledb update
+
+```
+# example
+docker exec -it dc68d97529d5 psql -U postgres -t hawkr_db
+psql (10.3)
+Type "help" for help.
+hawkr_db=# alter extension timescaledb update;
+```
