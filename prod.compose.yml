@@ -42,15 +42,11 @@ services:
     command: bin/deploy
     environment:
       RUNSERVER: 1
-      PORT: 9292
+      PORT: 80
     deploy:
       replicas: 1
       placement:
         constraints: [node.role == worker]
-      labels:
-        traefik.port: 9292
-        traefik.enable: "true"
-        traefik.frontend.rule: Host:hawkr.staging.crypto.deals
       update_config:
         parallelism: 0
         order: start-first
