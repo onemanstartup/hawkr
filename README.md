@@ -1,3 +1,5 @@
+Price checker from various crypto exchanges. Used for a failed crypto exchange. Not maintained. For archived purposes.
+
 # Hawkr
 
 - [ ] Availability feature
